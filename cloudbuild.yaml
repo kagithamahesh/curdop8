@@ -1,13 +1,13 @@
 steps:
 # 1. Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  # Change $COMMIT_SHA to $BUILD_ID
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloudrun-go-api:$BUILD_ID', '.']
+  # Change $COMMIT_SHA to 'latest'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloudrun-go-api:latest', '.']
 
 # 2. Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  # Change $COMMIT_SHA to $BUILD_ID
-  args: ['push', 'gcr.io/$PROJECT_ID/cloudrun-go-api:$BUILD_ID']
+  # Change $COMMIT_SHA to 'latest'
+  args: ['push', 'gcr.io/$PROJECT_ID/cloudrun-go-api:latest']
 
 # 3. Deploy the container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -15,8 +15,8 @@ steps:
       'run',
       'deploy',
       'cloudrun-go-api',
-      # Change $COMMIT_SHA to $BUILD_ID
-      '--image', 'gcr.io/$PROJECT_ID/cloudrun-go-api:$BUILD_ID',
+      # Change $COMMIT_SHA to 'latest'
+      '--image', 'gcr.io/$PROJECT_ID/cloudrun-go-api:latest',
       '--platform', 'managed',
       # ... (rest of the args)
       '--region', '${_REGION}',
