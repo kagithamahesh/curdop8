@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -69,7 +70,7 @@ func main() {
 	}
 
 	log.Printf("Listening on port %s", port)
-	router.Run(":" + port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 	// if err := router.Run(":" + port); err != nil {
 	// 	log.Fatal(err)
 	// }
