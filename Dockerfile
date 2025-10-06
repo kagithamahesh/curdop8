@@ -42,7 +42,7 @@ COPY --from=builder /app/cloudrun .
 
 # Copy any necessary certificates if your application makes HTTPS requests to external services
 # If you make HTTPS calls, uncomment the following line:
-# COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 # Define the entrypoint to run the built application
 # The port is automatically handled by the Cloud Run environment.

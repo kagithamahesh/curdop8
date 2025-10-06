@@ -69,9 +69,10 @@ func main() {
 	}
 
 	log.Printf("Listening on port %s", port)
-	if err := router.Run(":" + port); err != nil {
-		log.Fatal(err)
-	}
+	router.Run(":" + port)
+	// if err := router.Run(":" + port); err != nil {
+	// 	log.Fatal(err)
+	// }
 }
 
 func listUsers(c *gin.Context) {
